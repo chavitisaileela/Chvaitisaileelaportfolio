@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaviti Sai Leela | Portfolio</title>
+    <style>
+        :root {
+            --primary-blue: #2c3e50;
+            --accent-blue: #3498db;
+            --success-green: #27ae60;
+            --warning-orange: #f39c12;
+            --error-red: #e74c3c;
+            --light-gray: #f4f7f6;
+            --text-dark: #333;
+        }
+
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; line-height: 1.6; color: var(--text-dark); background-color: var(--light-gray); scroll-behavior: smooth; }
+        
+        /* Navigation */
+        nav { background: var(--primary-blue); padding: 1rem; position: sticky; top: 0; z-index: 1000; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; transition: color 0.3s; }
+        nav a:hover { color: var(--accent-blue); }
+
+        /* Hero Section */
+        header { background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1551288049-bbbda536ad89?auto=format&fit=crop&q=80&w=1000'); background-size: cover; color: white; text-align: center; padding: 80px 20px; }
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+
+.container { 
+    max-width: 95%; 
+    width: 1400px;  
+    margin: 20px auto; 
+    padding: 10px; 
+}
+
+section { 
+    background: white; 
+    padding: 50px 60px; 
+    margin-bottom: 30px; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+#about p {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    max-width: 1200px; 
+}
+        h2 { color: var(--primary-blue); border-bottom: 2px solid var(--accent-blue); display: inline-block; margin-bottom: 20px; }
+
+        .skill-tag { background: var(--accent-blue); color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.85rem; display: inline-block; margin: 5px; }
+
+        /* Projects */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .project-card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .project-card h3 { margin-top: 0; color: var(--accent-blue); }
+        
+        .view-btn { background: var(--accent-blue); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 10px; width: 100%; transition: 0.3s; text-decoration: none; text-align: center; }
+        .view-btn:hover { background: #2980b9; }
+        .demo-btn { background: var(--accent-blue); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 10px; width: 100%; transition: 0.3s; text-decoration: none; text-align: center; }
+
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); overflow-y: auto; }
+        .modal-content { background-color: white; margin: 2% auto; padding: 30px; border-radius: 12px; width: 90%; max-width: 800px; position: relative; }
+        .close { position: absolute; right: 20px; top: 10px; font-size: 28px; font-weight: bold; cursor: pointer; }
+
+        /* Modal Specific Styles for PM */
+        .modal-list { padding-left: 20px; list-style-type: disc; margin-top: 20px; }
+        .modal-list li { margin-bottom: 10px; }
+        .modal-footer { margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee; text-align: center; }
+        .footer-link { display: inline-block; margin: 0 10px; padding: 10px 20px; border-radius: 5px; text-decoration: none; color: white; font-weight: bold; }
+        .github-link-btn { background: #333; }
+        .linkedin-link-btn { background: #0077b5; }
+
+        /* Upload Area */
+        .upload-box { border: 2px dashed var(--accent-blue); padding: 30px; text-align: center; border-radius: 8px; margin: 20px 0; background: #ebf5fb; }
+        .github-link { display: inline-block; margin-bottom: 15px; color: var(--accent-blue); text-decoration: none; font-weight: bold; }
+        
+        #output { background-color: #f4f4f4; padding: 15px; border: 1px solid #ddd; white-space: pre-wrap; margin-top: 15px; max-height: 250px; overflow-y: auto; font-family: monospace; font-size: 0.9rem; text-align: left; border-radius: 5px; }
+
+        /* Experience */
+        .exp-item { margin-bottom: 20px; padding-left: 15px; border-left: 3px solid var(--accent-blue); }
+        .exp-date { font-weight: bold; color: #666; font-size: 0.9rem; }
+        .achievement-list { list-style: none; padding: 0; }
+        .achievement-list li::before { content: "🏆 "; }
+
+        footer { text-align: center; padding: 40px; color: #777; background: #fff; margin-top: 20px; }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <img src="logo.png" alt="Portfolio Logo" class="nav-logo">
+    <style>.nav-logo {
+    height: 40px; 
+    vertical-align: middle;
+    margin-right: 20px;
+    border-radius: 4px; 
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}</style>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<header>
+    <img src="profile.jpg" alt="Chaviti Sai Leela" class="profile-img">
+   <style>
+    .profile-img {
+    width: 200px;  
+    height: 200px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 3px solid white;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+</style>
+    <h1>Chaviti Sai Leela</h1>
+    <p>Aspiring Data Analyst | B.Tech Computer Science @ Joy University</p>
+    <div style="margin-top: 15px;">
+        <a href="mailto:chavitisaileela@gmail.com" style="color:white; text-decoration:none;"> Email</a> | 
+        <a href="https://github.com/chavitisaileela" target="_blank" style="color:white; text-decoration:none;"> GitHub</a> |
+        <a href="https://linkedin.com/in/sai-leela-chaviti-11a2ab315/" target="_blank" style="color:white; text-decoration:none;"> LinkedIn</a>
+    </div>
+</header>
+
+<div class="container">
+    <section id="about">
+    <h2>About Me</h2>
+    <p style="text-align: justify; line-height: 1.8;">
+        I am an aspiring <strong>Data Analyst</strong> currently pursuing my B.Tech in Computer Science at Joy University. I am proficient in <strong>Tableau, Power BI, Python, and SQL</strong>, and I have a deep passion for uncovering hidden trends within complex datasets to drive business growth. During my internship at <strong>TANSAM (Powered by SIEMENS)</strong>, I gained hands-on experience building real-time manufacturing dashboards that translated technical metrics into clear visual stories for stakeholders. 
+        <br><br>
+        My background as an HR Executive at <strong>OrionAC</strong> further sharpened my ability to apply data-driven insights to organizational efficiency and recruitment analytics, proving that data can improve every department. I am also highly interested in the intersection of AI and data, as shown in my projects involving <strong>Fake Certificate Recognition</strong> and <strong>Predictive Maintenance</strong> using machine learning models. I am motivated to solve real-world problems through data-driven insights and continuous learning, and I am currently looking for opportunities to help organizations make smarter, evidence-based decisions.
+    </p>
+</section>
+    <section id="skills">
+    <h2>Skills & Expertise</h2>
+    
+    <div style="margin-bottom: 15px;">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">JavaScript (Basic)</span>
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">Tableau</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Excel</span>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <span class="skill-tag">Data Visualization</span>
+        <span class="skill-tag">Data Cleaning</span>
+        <span class="skill-tag">Dashboard Creation</span>
+    </div>
+
+    <div>
+        <span class="skill-tag" style="background-color: var(--primary-blue);">Teamwork</span>
+        <span class="skill-tag" style="background-color: var(--primary-blue);">Problem-Solving</span>
+    </div>
+</section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div>
+                    <h3>Fake Certificate Recognition</h3>
+                    <p>AI-driven system to detect fraudulent documents.</p>
+                </div>
+                <button class="view-btn" onclick="openModal()">View Project</button>
+            </div>
+        <div id="demoModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 style="border:none; margin-bottom:5px;">Certificate Verification System</h2>
+        
+        <a href="https://github.com/chavitisaileela/fake-certificate-recognition" target="_blank" class="github-link">
+            📁 Refer GitHub Repository →
+        </a>
+
+        <div class="upload-box">
+            <h3>Step 1: Upload Certificate</h3>
+            <p>Upload a PDF or Image of the certificate to analyze authenticity.</p>
+            <input type="file" id="fileInput" accept="image/*">
+            <button class="demo-btn" onclick="upload()" style="background-color: #27ae60; width: auto; padding: 10px 30px;">Analyze Now</button>
+            
+            <div id="output">Results will appear here...</div>
+        </div>
+
+        <div id="checklistSection">
+            <h3>Step 2: Verification Checklist</h3>
+            <p>The system evaluates the document based on these 10 core security points:</p>
+            <ul style="column-count: 2; font-size: 0.9rem; list-style-type: none; padding: 0;">
+                <li>✅ <strong>Typos:</strong> Institution or degree errors.</li>
+                <li>✅ <strong>Logo:</strong> Blurry or pixelated marks.</li>
+                <li>✅ <strong>Paper:</strong> Quality and security fibers.</li>
+                <li>✅ <strong>Texture:</strong> Embossed seals/wet ink.</li>
+                <li>✅ <strong>Language:</strong> Localized terminology check.</li>
+                <li>✅ <strong>Date:</strong> Realistic business day verification.</li>
+                <li>✅ <strong>QR Codes:</strong> Secure domain validation.</li>
+                <li>✅ <strong>Accreditation:</strong> Licensed body check.</li>
+                <li>✅ <strong>Registrar:</strong> Direct office verification.</li>
+                <li>✅ <strong>Transcripts:</strong> Multi-page security check.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function openModal() { document.getElementById("demoModal").style.display = "block"; }
+    function closeModal() { document.getElementById("demoModal").style.display = "none"; }
+    
+    async function upload() {
+        const fileElement = document.getElementById("fileInput");
+        const f = fileElement.files[0];
+        const outputArea = document.getElementById("output");
+
+        if (!f) {
+            alert("Please select a file first");
+            return;
+        }
+
+        const fd = new FormData();
+        fd.append("file", f);
+
+        outputArea.innerText = "⌛ Analyzing patterns and verifying credentials (Port 8081)...";
+        outputArea.style.color = "var(--accent-blue)";
+
+        try {
+            const res = await fetch("http://localhost:8081/upload", {
+                method: "POST",
+                body: fd
+            });
+
+            if (!res.ok) {
+                outputArea.innerText = "Error: Server returned status " + res.status;
+                outputArea.style.color = "var(--error-red)";
+                return;
+            }
+
+            const json = await res.json();
+            
+            let display = `✅ Analysis Complete\n`;
+            display += `VERDICT: ${json.verdict.toUpperCase()}\n`;
+            display += `============================\n`;
+            
+            if(json.warnings && json.warnings.length > 0) {
+                display += `WARNINGS FOUND:\n- ${json.warnings.join('\n- ')}\n\n`;
+                outputArea.style.color = "var(--warning-orange)";
+            } else {
+                display += `STATUS: No suspicious patterns found.\n\n`;
+                outputArea.style.color = "var(--success-green)";
+            }
+
+            display += `EXTRACTED TEXT:\n${json.extractedText}`;
+            outputArea.innerText = display;
+
+        } catch (error) {
+            outputArea.innerText = "Connection Failed!\n1. Ensure Spring Boot is running.\n2. Ensure port 8081 is active.\n3. Check @CrossOrigin in CertController.";
+            outputArea.style.color = "var(--error-red)";
+        }
+    }
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("demoModal")) closeModal();
+        if (event.target == document.getElementById("pmModal")) closePMModal();
+    }
+</script>
+
+            <div class="project-card">
+    <div>
+        <h3>ShieldGate WiFi Portal</h3>
+        <p>Secure identity-based network access system for colleges and companies.</p>
+    </div>
+    <button class="view-btn" onclick="openShieldGate()">View Project</button>
+</div>
+     <footer><div id="shieldGateModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeShieldGate()">&times;</span>
+        <h2>ShieldGate Secure WiFi Management Portal</h2>
+        <p>ShieldGate addresses security risks in shared WiFi networks by implementing an identity-based access system instead of static passwords.</p>
+        
+        <ul style="text-align: left; line-height: 1.8; margin: 20px 0; color: #444;">
+            <li><strong>Verified Access:</strong> Users must enter an email or mobile number to receive a unique passcode; access is only granted to authorized individuals.</li>
+            <li><strong>Time-Bound Sessions:</strong> The portal prevents indefinite network access by supporting session limits (e.g., 5-hour or 8-hour windows).</li>
+            <li><strong>Device Restrictions:</strong> Limits users to a maximum of two devices (e.g., one laptop and one phone) to prevent unauthorized credential sharing.</li>
+            <li><strong>Administrative Management:</strong> Admins can monitor active sessions in real-time and manually terminate connections if suspicious activity is detected.</li>
+        </ul>
+
+        <div style="display: flex; gap: 10px; margin-top: 25px;">
+            <a href="https://github.com/chavitisaileela/Secure-WiFi-Portal" target="_blank" class="demo-btn" style="flex: 1;">GitHub</a>
+            <a href="https://www.linkedin.com/posts/sai-leela-chaviti-11a2ab315_networksecurity-activity-7411487853160935424-fZpE" target="_blank" class="demo-btn" style="flex: 1; background: #0077b5;">LinkedIn</a>
+        </div>
+    </div>
+</div>
+</footer> 
+<script>
+function openShieldGate() { 
+    document.getElementById("shieldGateModal").style.display = "block"; 
+}
+
+function closeShieldGate() { 
+    document.getElementById("shieldGateModal").style.display = "none"; 
+}
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById("demoModal")) closeModal();
+    if (event.target == document.getElementById("shieldGateModal")) closeShieldGate();
+}
+</script>      
+           <div class="project-card">
+    <div>
+        <h3>Predictive Maintenance</h3>
+        <p>Industrial failure forecasting system using machine learning to reduce downtime.</p>
+    </div>
+    <button class="view-btn" onclick="openPredictive()">View Project</button>
+</div>
+<div id="predictiveModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePredictive()">&times;</span>
+        <h2>Predictive Maintenance Analysis</h2>
+        <p>This project focuses on predicting equipment failures in industrial settings using advanced machine learning techniques to optimize maintenance schedules.</p>
+        
+        <ul style="text-align: left; line-height: 1.8; margin: 20px 0; color: #444;">
+            <li><strong>Data Analysis:</strong> Processed high-dimensional industrial sensor data to identify patterns leading to machine failure.</li>
+            <li><strong>XGBoost Model:</strong> Implemented the XGBoost algorithm to achieve high accuracy in forecasting potential breakdowns.</li>
+            <li><strong>Feature Engineering:</strong> Selected critical indicators like temperature, vibration, and pressure to improve model reliability.</li>
+            <li><strong>Business Impact:</strong> Designed to help companies transition from reactive to proactive maintenance, significantly reducing operational costs.</li>
+        </ul>
+
+        <div style="display: flex; gap: 10px; margin-top: 25px;">
+            <a href="https://github.com/chavitisaileela" target="_blank" class="demo-btn" style="flex: 1;">GitHub Reference</a>
+            <a href="https://linkedin.com/in/sai-leela-chaviti-11a2ab315/" target="_blank" class="demo-btn" style="flex: 1; background: #0077b5;">LinkedIn View</a>
+        </div>
+    </div>
+</div>
+        <script>
+                function openPredictive() { 
+    document.getElementById("predictiveModal").style.display = "block"; 
+}
+function closePredictive() { 
+    document.getElementById("predictiveModal").style.display = "none"; 
+}
+window.onclick = function(event) {
+    if (event.target == document.getElementById("demoModal")) closeModal();
+    if (event.target == document.getElementById("shieldGateModal")) closeShieldGate();
+    if (event.target == document.getElementById("predictiveModal")) closePredictive();
+}
+    </script>
+
+            <div class="project-card">
+    <div>
+        <h3>Zomato Restaurant Analysis</h3>
+        <p>A comprehensive Power BI and Python analysis uncovering restaurant performance and customer dining trends.</p>
+    </div>
+    <button class="view-btn" onclick="openZomato()">View Project</button>
+</div>
+<footer><div id="zomatoModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeZomato()">&times;</span>
+        <h2>Zomato Restaurant & Power BI Analysis</h2>
+        <p>This project explores the Zomato ecosystem to identify key drivers of restaurant success, utilizing both Python for data cleaning and Power BI for interactive visualization.</p>
+        
+        <ul style="text-align: left; line-height: 1.8; margin: 20px 0; color: #444;">
+            <li><strong>Interactive Dashboard:</strong> Developed a Power BI dashboard to visualize restaurant ratings, cost distributions, and location-based performance.</li>
+            <li><strong>Data Insights:</strong> Analyzed how features like "Online Ordering" and "Table Booking" directly impact customer ratings and footfall.</li>
+            <li><strong>Cuisine Trends:</strong> Identified top-performing cuisines and price points to help potential restaurateurs make data-driven decisions.</li>
+            <li><strong>Tools Used:</strong> Leveraged <strong>Python (Pandas/Seaborn)</strong> for deep exploratory data analysis and <strong>Power BI</strong> for stakeholder reporting.</li>
+        </ul>
+
+        <div style="display: flex; gap: 10px; margin-top: 25px;">
+            <a href="https://github.com/chavitisaileela/Zomato-Restaurant-Analysis" target="_blank" class="demo-btn" style="flex: 1;">GitHub Repository</a>
+            <a href="https://www.linkedin.com/posts/sai-leela-chaviti-11a2ab315_i-have-completed-my-first-power-bi-dashboard-activity-7212497511356211200-JRme" target="_blank" class="demo-btn" style="flex: 1; background: #0077b5;">View Dashboard Post</a>
+        </div>
+    </div>
+</div>
+</footer>
+    </section>
+
+    <section id="experience">
+        <h2>Work Experience</h2>
+        <div class="exp-item">
+            <span class="exp-date">June 2024 - July 2024</span>
+            <h3>Data Analytics Intern</h3>
+            <p><strong>TANSAM Powered by SIEMENS</strong></p>
+            <p>Developed interactive Power BI dashboards for manufacturing data, improving real-time insights for decision-makers.</p>
+        </div>
+        <div class="exp-item">
+            <span class="exp-date">May 2025 - Nov 2025</span>
+            <h3>Human Resources Executive</h3>
+            <p><strong>Orion AC</strong></p>
+            <p>Leveraged data-driven insights to optimize recruitment and enhanced HR analytics dashboards.</p>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <h2>Certificates & Achievements</h2>
+        <ul class="achievement-list">
+            <li><strong>Engineer's Day 2025:</strong> Ideathon participant, Joy University & ACM Chapter.</li>
+            <li><strong>HORIZON 8:</strong> Hackathon participant at EXCEL Engineering & TANSAM.</li>
+        </ul>
+    </section>
+
+    <section id="contact" style="text-align: center;">
+        <h2>Get In Touch</h2>
+        <p>Email: <a href="mailto:chavitisaileela@gmail.com">chavitisaileela@gmail.com</a></p>
+        <p>Phone: +91 9440610682</p>
+        <p>
+            <a href="https://github.com/chavitisaileela" target="_blank">GitHub</a> | 
+            <a href="https://linkedin.com/in/sai-leela-chaviti-11a2ab315/" target="_blank">LinkedIn</a>
+        </p>
+    </section>
+</div>
+<script>
+function openZomato() { 
+    document.getElementById("zomatoModal").style.display = "block"; 
+}
+
+function closeZomato() { 
+    document.getElementById("zomatoModal").style.display = "none"; 
+}
+window.onclick = function(event) {
+    if (event.target == document.getElementById("shieldGateModal")) closeShieldGate();
+    if (event.target == document.getElementById("predictiveModal")) closePredictive();
+    if (event.target == document.getElementById("zomatoModal")) closeZomato();}</script>
+
+    <footer>
+    <p>&copy; 2025 Chaviti Sai Leela. Built with Passion & Data.</p>
+</footer>
+</body>
+</html>
